@@ -4,6 +4,7 @@ function player() {
 }
 
 player.prototype.startingHand = function(card_one, card_two) {
+  this.player_hand = [];
   this.hand_value = 0;
   this.player_hand.push(card_one);
   this.player_hand.push(card_two);
@@ -64,14 +65,6 @@ player.prototype.calculateHandTotal = function() {
     if ((aces > 0) && (this.hand_value > 21)) {
       this.hand_value -= 10;
     }
-    // if (this.hand_value > 21) {
-    //   for (j = 0; j < this.player_hand.length; j++) {
-    //     if (this.player_hand[j].includes('ace')) {
-    //       this.hand_value -= 10;
-    //       break;
-    //     }
-    //   }
-    // }
   }
   this.message = this.hand_value;
 };
