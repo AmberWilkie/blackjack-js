@@ -29,16 +29,12 @@ function hitMeClicked() {
   $('#hit_me').click(function () {
 
     if ($('#player_card_three').is(':empty')) {
-      // hit_me_card = new_deck.deal();
       player_one.hitMe(getNextCard());
       $('#player_card_three').text(player_one.player_hand[2]);
     } else if ($('#player_card_four').is(':empty')) {
-      hit_me_card2 = new_deck.deal();
-      console.log("got into second if in hit-me");
       player_one.hitMe(getNextCard());
       $('#player_card_four').text(player_one.player_hand[3]);
     } else {
-      hit_me_card3 = new_deck.deal();
       player_one.hitMe(getNextCard());
       $('#player_card_five').text(player_one.player_hand[4]);
     }
@@ -49,10 +45,10 @@ function hitMeClicked() {
 function holdClicked() {
   $('#hold').click(function () {
     $('#dealer_card_one').text(dealer.player_hand[0]);
+    changeDealerMessage();
 
     while (dealer.hand_value < 17) {
         addDealerCard();
-        changeDealerMessage();
       }
     if ((dealer.hand_value > player_one.hand_value) && (dealer.hand_value < 22)) {
       $('#final_message').text('Dealer wins!');
@@ -71,14 +67,14 @@ function holdClicked() {
 function addDealerCard() {
   if ($('#dealer_card_three').is(':empty')) {
     dealer.hitMe(getNextCard());
-    $('#player_card_three').text(dealer.player_hand[2]);
+    $('#dealer_card_three').text(dealer.player_hand[2]);
   } else if ($('#dealer_card_four').is(':empty')) {
     new_card = new_deck.deal();
     dealer.hitMe(getNextCard());
-    $('#player_card_four').text(dealer.player_hand[3]);
+    $('#dealer_card_four').text(dealer.player_hand[3]);
   } else {
     dealer.hitMe(getNextCard());
-    $('#player_card_five').text(dealer.player_hand[4]);
+    $('#dealer_card_five').text(dealer.player_hand[4]);
   }
   changeDealerMessage();
 
@@ -87,7 +83,7 @@ function addDealerCard() {
 function changeMessage() {
   player_one.calculateHandTotal();
   if (player_one.hand_value < 22) {
-  game_message = ("Here's the player's total: " + player_one.message + " and here's the dealer's total: ***concealed***");
+    game_message = ("Here's the player's total: " + player_one.message + " and here's the dealer's total: ***concealed***");
   } else {
     game_message = "Bust!!!!";
     $('#hit_me').hide();

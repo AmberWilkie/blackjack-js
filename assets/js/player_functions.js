@@ -64,6 +64,7 @@ player.prototype.calculateHandTotal = function() {
     }
     if ((aces > 0) && (this.hand_value > 21)) {
       this.hand_value -= 10;
+      aces -= 1;
     }
   }
   this.message = this.hand_value;
