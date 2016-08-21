@@ -41,4 +41,9 @@ describe ("Setup", function() {
     expect(newdeck.card_one).toBeDefined();
   });
 
+  it("removes dealt card from the deck", function () {
+    newdeck.deal();
+    expect(newdeck.deck.length).toEqual(51);
+  });
+
 });

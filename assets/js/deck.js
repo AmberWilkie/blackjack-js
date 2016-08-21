@@ -33,4 +33,5 @@ createDeck.prototype.deal = function() {
   this.card_one = null;
   random = Math.floor((Math.random() * 52) + 1);
   card_one = deck[random];
+  deck.pop(card_one);
 };
