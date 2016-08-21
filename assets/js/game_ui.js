@@ -5,14 +5,23 @@ var onReadyEvents = function() {
 
 function dealClicked() {
   $("#deal").click(function () {
-      $('#player_card_one').text(player_one.player_hand[0]);
-      $('#player_card_two').text(player_one.player_hand[1]);
-      $('#dealer_card_one').text('Concealed');
-      $('#dealer_card_two').text(dealer.player_hand[1]);
-      player_one.calculateHandTotal();
-      dealer.calculateHandTotal();
-      changeMessage();
+      dealClickStuff();
     });
+}
+
+function dealClickStuff() {
+  $('#player_card_one').text(player_one.player_hand[0]);
+  $('#player_card_two').text(player_one.player_hand[1]);
+  $('#dealer_card_one').text('Concealed');
+  $('#dealer_card_two').text(dealer.player_hand[1]);
+  player_one.calculateHandTotal();
+  dealer.calculateHandTotal();
+  changeMessage();
+}
+
+function getNextCard() {
+  next_card = new_deck.deal();
+  return next_card;
 }
 
 function hitMeClicked() {
@@ -20,18 +29,18 @@ function hitMeClicked() {
   $('#hit_me').click(function () {
 
     if ($('#player_card_three').is(':empty')) {
-      hit_me_card = new_deck.deal();
-      player_one.hitMe(hit_me_card);
-      $('#player_card_three').text(hit_me_card);
+      // hit_me_card = new_deck.deal();
+      player_one.hitMe(getNextCard());
+      $('#player_card_three').text(player_one.player_hand[2]);
     } else if ($('#player_card_four').is(':empty')) {
       hit_me_card2 = new_deck.deal();
-      player_one.hitMe(hit_me_card2);
       console.log("got into second if in hit-me");
-      $('#player_card_four').text(hit_me_card2);
+      player_one.hitMe(getNextCard());
+      $('#player_card_four').text(player_one.player_hand[3]);
     } else {
       hit_me_card3 = new_deck.deal();
-      player_one.hitMe(hit_me_card3);
-      $('#player_card_five').text(hit_me_card3);
+      player_one.hitMe(getNextCard());
+      $('#player_card_five').text(player_one.player_hand[4]);
     }
     changeMessage();
   });
@@ -49,6 +58,7 @@ function holdClicked() {
       $('#final_message').text('Dealer wins!');
       reset();
     } else if (dealer.hand_value == player_one.hand_value) {
+      changeDealerMessage();
       $('#final_message').text('Push!');
       reset();
     } else {
@@ -60,17 +70,15 @@ function holdClicked() {
 
 function addDealerCard() {
   if ($('#dealer_card_three').is(':empty')) {
-    new_card = new_deck.deal();
-    dealer.hitMe(new_card);
-    $('#dealer_card_three').text(new_card);
+    dealer.hitMe(getNextCard());
+    $('#player_card_three').text(dealer.player_hand[2]);
   } else if ($('#dealer_card_four').is(':empty')) {
     new_card = new_deck.deal();
-    dealer.hitMe(new_card);
-    $('#dealer_card_four').text(new_card);
+    dealer.hitMe(getNextCard());
+    $('#player_card_four').text(dealer.player_hand[3]);
   } else {
-    new_card = new_deck.deal();
-    dealer.hitMe(new_card);
-    $('#dealer_card_five').text(new_card);
+    dealer.hitMe(getNextCard());
+    $('#player_card_five').text(dealer.player_hand[4]);
   }
   changeDealerMessage();
 
@@ -130,6 +138,6 @@ function setUp() {
 function reset() {
   $('#deal').click(function() {
     setUp();
-    dealClicked();
+    dealClickStuff();
   });
 }
