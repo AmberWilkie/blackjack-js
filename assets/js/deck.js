@@ -31,7 +31,7 @@ function fourSuits(card_value) {
 
 createDeck.prototype.deal = function() {
   this.card_one = null;
-  random = Math.floor((Math.random() * 52) + 1);
+  random = Math.floor((Math.random() * deck.length) + 1);
   card_one = deck[random];
   deck.pop(card_one);
 };
