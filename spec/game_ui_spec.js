@@ -46,3 +46,21 @@ describe('UI Testing', function() {
     });
   });
 });
+
+describe ("Dealer has to be dealt four cards", function() {
+  beforeEach(function() {
+    jasmine.getFixtures().fixturesPath = 'base/spec/fixtures';
+    loadFixtures('game_partial.html');
+    $.holdReady(false);
+
+    dealer_hand = ['queend', 'sixh'];
+    d_extra_card = 'jacks';
+  });
+
+  it("when hold button clicked", function() {
+    $("#hold").trigger("click");
+    expect($('#display_message').text()).toEqual("Dealer Busts! You win!!!!");
+  });
+
+
+});
