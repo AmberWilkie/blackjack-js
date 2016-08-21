@@ -19,6 +19,7 @@ player.prototype.hitMe = function(extra_card) {
 
 player.prototype.calculateHandTotal = function() {
   this.hand_value = 0;
+  aces = 0;
   for (i = 0; i < this.player_hand.length; i++) {
     if (this.player_hand[i].includes('two')) {
       this.hand_value += 2;
@@ -57,16 +58,20 @@ player.prototype.calculateHandTotal = function() {
       this.hand_value += 10;
     }
     if (this.player_hand[i].includes('ace')) {
+      aces += 1;
       this.hand_value += 11;
     }
-    if (this.hand_value > 21) {
-      for (j = 0; j < this.player_hand.length; j++) {
-        if (this.player_hand[j].includes('ace')) {
-          this.hand_value -= 10;
-          break;
-        }
-      }
+    if ((aces > 0) && (this.hand_value > 21)) {
+      this.hand_value -= 10;
     }
+    // if (this.hand_value > 21) {
+    //   for (j = 0; j < this.player_hand.length; j++) {
+    //     if (this.player_hand[j].includes('ace')) {
+    //       this.hand_value -= 10;
+    //       break;
+    //     }
+    //   }
+    // }
   }
   this.message = this.hand_value;
 };
