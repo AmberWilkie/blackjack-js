@@ -29,6 +29,8 @@ function fourSuits(card_value) {
   deck.push(spade);
 }
 
-// createDeck.prototype.deal(function() {
-//
-// });
+createDeck.prototype.deal = function() {
+  this.card_one = null;
+  random = Math.floor((Math.random() * 52) + 1);
+  card_one = deck[random];
+};

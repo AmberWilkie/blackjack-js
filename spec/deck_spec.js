@@ -25,8 +25,20 @@ describe("Create Deck", function() {
     expect(unique.length).toEqual(52);
   });
 
-  xit("can pull a card at random from the deck", function() {
+  // it("creates a random number", function() {
+  //   expect()
+  // });
 
+});
+
+describe ("Setup", function() {
+  beforeEach(function() {
+    newdeck = new createDeck();
+  });
+
+  it("can pull a card at random from the deck", function() {
+    newdeck.deal();
+    expect(newdeck.card_one).toBeDefined();
   });
 
 });
