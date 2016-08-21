@@ -4,7 +4,6 @@ describe ("Setup a Game", function () {
     player_one = new player();
     dealer = new player();
     new_deck = new createDeck();
-    new_game = new game();
     card_one = new_deck.deal();
     card_two = new_deck.deal();
     card_three = new_deck.deal();

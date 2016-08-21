@@ -3,6 +3,8 @@ describe('Partial sample', function() {
     jasmine.getFixtures().fixturesPath = 'base/spec/fixtures';
     loadFixtures('game_partial.html');
     $.holdReady(false);
+
+    p_first_card = 'twoh';
   });
 
   afterEach(function() {
@@ -14,7 +16,7 @@ describe('Partial sample', function() {
 
     it("when deal is clicked", function() {
       $('#deal').trigger('click');
-      expect($('#display_message').text()).toBe('No message yet.');
+      expect($('#player_card_one').text()).toEqual("twoh");
     });
   });
 });
