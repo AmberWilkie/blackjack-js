@@ -1,4 +1,4 @@
-describe ("Setup a Game", function () {
+describe ("Integration Tests", function () {
 
   beforeEach(function() {
     player_one = new player();
@@ -24,6 +24,22 @@ describe ("Setup a Game", function () {
 
   it("gives hand to dealer", function() {
     expect(dealer.player_hand.length).toEqual(2);
+  });
+
+  it ("totals the player hand", function() {
+    player_one.calculateHandTotal();
+    expect(player_one.hand_value).toBeGreaterThan(2);
+  });
+
+  it ('totals the dealer hand', function () {
+    dealer.calculateHandTotal();
+    expect(dealer.hand_value).toBeGreaterThan(2);
+  });
+
+  it ('alerts if player hand value goes over 21', function() {
+    player_one.player_hand = ['queend', 'jackh'];
+    player_one.hitMe('threed');
+    expect(player_one.message).toEqual('Bust!!!');
   });
 
 });

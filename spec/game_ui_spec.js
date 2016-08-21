@@ -4,11 +4,10 @@ describe('UI Testing', function() {
     loadFixtures('game_partial.html');
     $.holdReady(false);
 
-    p_first_card = 'twoh';
-    p_second_card = 'queens';
-    d_first_card = 'sevend';
-    d_second_card = 'aceh';
-    d_third_card = 'jacks';
+    player_hand = ['twoh', 'queens'];
+    dealer_hand = ['sevend', 'aceh'];
+
+    d_extra_card = 'jacks';
     hit_me_card = 'threed';
   });
 

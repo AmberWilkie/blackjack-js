@@ -2,14 +2,16 @@ var onReadyEvents = function() {
   dealClicked();
   hitMeClicked();
   holdClicked();
+  player_total = 0;
+  dealer_total = 0;
 };
 
 function dealClicked() {
     $("#deal").click(function () {
-      $('#player_card_one').text(p_first_card);
-      $('#player_card_two').text(p_second_card);
-      $('#dealer_card_one').text(d_first_card);
-      $('#dealer_card_two').text(d_second_card);
+      $('#player_card_one').text(player_hand[0]);
+      $('#player_card_two').text(player_hand[1]);
+      $('#dealer_card_one').text(dealer_hand[0]);
+      $('#dealer_card_two').text(dealer_hand[1]);
     });
 }
 
@@ -27,12 +29,16 @@ function hitMeClicked() {
 
 function holdClicked() {
   $('#hold').click(function () {
-    if ($('#dealer_card_three').text('')) {
-      $('#dealer_card_three').text(d_third_card);
-    } else if ($('#dealer_card_four').text('')) {
-      $('#dealer_card_four').text(d_third_card);
-    } else {
-      $('#dealer_card_five').text(d_third_card);
-    }
+    addDealerCard();
   });
+}
+
+function addDealerCard() {
+  if ($('#dealer_card_three').text('')) {
+    $('#dealer_card_three').text(d_extra_card);
+  } else if ($('#dealer_card_four').text('')) {
+    $('#dealer_card_four').text(d_extra_card);
+  } else {
+    $('#dealer_card_five').text(d_extra_card);
+  }
 }

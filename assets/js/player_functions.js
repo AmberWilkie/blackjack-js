@@ -1,6 +1,7 @@
 function player() {
   this.player_hand = [];
   this.hand_value = 0;
+  this.message = "";
 }
 
 player.prototype.startingHand = function(card_one, card_two) {
@@ -11,10 +12,14 @@ player.prototype.startingHand = function(card_one, card_two) {
 
 player.prototype.hitMe = function(extra_card) {
   this.player_hand.push(extra_card);
+  this.calculateHandTotal();
+  if (this.hand_value > 21) {
+    this.message = "Bust!!!";
+  }
 };
 
 player.prototype.calculateHandTotal = function() {
-  // for loop? For each card in player_hand (player_hand.length), check if it has one of the faces, then augment hand_value.
+
   for (i = 0; i < this.player_hand.length; i++) {
     if (this.player_hand[i].includes('ace')) {
       this.hand_value += 1;
