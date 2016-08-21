@@ -14,7 +14,12 @@ describe ("Player functions", function () {
   it ("calculates total in hand for two aces", function() {
     new_player.startingHand('acec', 'aced');
     new_player.calculateHandTotal();
-    expect(new_player.hand_value).toEqual(2);
+    expect(new_player.hand_value).toEqual(12);
+  });
+  it ("calculates total in hand for two aces and a ten", function() {
+    new_player.player_hand = ['acec', 'aced', 'tend'];
+    new_player.calculateHandTotal();
+    expect(new_player.hand_value).toEqual(12);
   });
 
   it ("calculates total in hand for a five and a queen", function() {

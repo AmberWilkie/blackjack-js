@@ -1,6 +1,5 @@
 function player() {
   this.player_hand = [];
-  this.hand_value = 0;
   this.message = "";
 }
 
@@ -12,18 +11,15 @@ player.prototype.startingHand = function(card_one, card_two) {
 
 player.prototype.hitMe = function(extra_card) {
   this.player_hand.push(extra_card);
-  this.calculateHandTotal();
-  if (this.hand_value > 21) {
-    this.message = "Bust!!!";
-  }
+  // this.calculateHandTotal();
+  // if (this.hand_value > 21) {
+  //   this.message = "Bust!!!";
+  // }
 };
 
 player.prototype.calculateHandTotal = function() {
-
+  this.hand_value = 0;
   for (i = 0; i < this.player_hand.length; i++) {
-    if (this.player_hand[i].includes('ace')) {
-      this.hand_value += 1;
-    }
     if (this.player_hand[i].includes('two')) {
       this.hand_value += 2;
     }
@@ -60,9 +56,17 @@ player.prototype.calculateHandTotal = function() {
     if (this.player_hand[i].includes('king')) {
       this.hand_value += 10;
     }
-
+    if (this.player_hand[i].includes('ace')) {
+      this.hand_value += 11;
+    }
+    if (this.hand_value > 21) {
+      for (j = 0; j < this.player_hand.length; j++) {
+        if (this.player_hand[j].includes('ace')) {
+          this.hand_value -= 10;
+          break;
+        }
+      }
+    }
   }
-  // if (this.player_hand[1].includes('ace')) {
-  //   this.hand_value = this.hand_value + 1;
-  // }
+  this.message = this.hand_value;
 };

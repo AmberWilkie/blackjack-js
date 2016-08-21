@@ -2,7 +2,7 @@ function createDeck() {
   this.deck = [];
   deck = this.deck;
 
-  fourSuits("ace", 1);
+  fourSuits("ace", 11);
   fourSuits("two", 2);
   fourSuits("three", 3);
   fourSuits("four", 4);

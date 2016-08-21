@@ -28,18 +28,18 @@ describe ("Integration Tests", function () {
 
   it ("totals the player hand", function() {
     player_one.calculateHandTotal();
-    expect(player_one.hand_value).toBeGreaterThan(2);
+    expect(player_one.hand_value).toBeGreaterThan(1);
   });
 
   it ('totals the dealer hand', function () {
     dealer.calculateHandTotal();
-    expect(dealer.hand_value).toBeGreaterThan(2);
+    expect(dealer.hand_value).toBeGreaterThan(1);
   });
 
-  it ('alerts if player hand value goes over 21', function() {
-    player_one.player_hand = ['queend', 'jackh'];
-    player_one.hitMe('threed');
-    expect(player_one.message).toEqual('Bust!!!');
+  it ("hits with random card if you say 'hit me'", function () {
+    new_card = new_deck.deal();
+    player_one.hitMe(new_card);
+    expect((player_one.player_hand).length).toEqual(3);
   });
 
 });
