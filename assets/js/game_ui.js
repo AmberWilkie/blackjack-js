@@ -85,9 +85,10 @@ function changeMessage() {
   if (player_one.hand_value < 22) {
     game_message = ("Here's the player's total: " + player_one.message + " and here's the dealer's total: ***concealed***");
   } else {
-    game_message = "Bust!!!!";
+    $('#final_message').text("Bust!!!!");
     $('#hit_me').hide();
     $('#hold').hide();
+    changeDealerMessage();
     reset();
   }
   $('#display_message').text(game_message);
