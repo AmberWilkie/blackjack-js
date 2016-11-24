@@ -18,11 +18,11 @@ describe('UI Testing', function() {
 
   describe("Player functions on UI", function() {
 
-    xit("when deal is clicked", function() {
+    it("when deal is clicked", function() {
       $('#deal').trigger('click');
       expect($('#player_card_one').text()).toEqual(!null);
       expect($('#player_card_two').text()).toEqual(!null);
-      expect($('#dealer_card_one').text()).toEqual(!null);
+      expect($('#dealer_card_one').text()).toEqual('Concealed');
       expect($('#dealer_card_two').text()).toEqual(!null);
     });
 
@@ -32,9 +32,7 @@ describe('UI Testing', function() {
     });
 
     it ('alerts if player hand value goes over 21', function() {
-      // player_one.hitMe('kingd');
       player_one.hitMe('kingc');
-      console.log(player_one.player_hand);
       expect(game_message).toEqual('Bust!!!!');
     });
   });

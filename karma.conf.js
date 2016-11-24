@@ -86,8 +86,8 @@ module.exports = function(config) {
         flags: ['--no-sandbox']
       }
     }
-  })
+  });
   if (process.env.TRAVIS) {
     config.browsers = ['chromeTravisCI'];
   }
-}
+};
